@@ -13,11 +13,11 @@ jobs:
     - name: Vet
       run: |
         go vet ./...
-
   deploy:
     name: Push Docker image to DockerHub
     runs-on: ubuntu-22.04
     needs: test
+    if: startsWith(github.ref, 'refs/tags' )
     steps:
      - name: Checkout
        uses: actions/checkout@v4
