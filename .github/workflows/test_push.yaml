@@ -13,8 +13,11 @@ jobs:
     - name: Vet
       run: |
         go vet ./...
-
   deploy:
+    on:
+      push:
+        tags:
+          - '*'
     name: Push Docker image to DockerHub
     runs-on: ubuntu-22.04
     needs: test
